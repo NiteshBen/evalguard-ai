@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evalguard-ai"
+version = "0.1.0"
+description = "Production-grade LLM & RAG Evaluation, Hallucination Guardrails, and CI/CD Quality Gates in Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Nitesh Beniwal", email = "niteshben01@gmail.com"}
+]
+keywords = [
+    "llm-evaluation",
+    "rag",
+    "hallucination-detection",
+    "guardrails",
+    "ci-cd",
+    "genai",
+    "testing",
+    "evalguard",
+    "metrics"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "pydantic>=2.0.0",
+    "scikit-learn>=1.2.0",
+    "numpy>=1.22.0",
+    "click>=8.0.0",
+    "colorama>=0.4.5",
+]
+
+[project.optional-dependencies]
+gemini = [
+    "google-genai>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
+all = [
+    "google-genai>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "pytest>=7.0.0",
+    "pandas>=2.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+evalguard = "evalguard.cli:main"
+
+[project.entry-points.pytest11]
+evalguard = "evalguard.pytest_plugin"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
